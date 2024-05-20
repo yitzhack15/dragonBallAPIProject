@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball - Personajes</title>
+</head>
+<body>
+<div class="content">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Buscar Personaje">
+      <label >Ingresa el nombre de un personaje de Dragon Ball:</label><br>
+      <input type="text" name="character" id="characterSearch" [(ngModel)] = 'characterName' name="characterName"><br>
+      <button (click) = 'getCharacterByName()'>Buscar</button><br>
+        <div class="characterData" *ngIf = 'singleCharacters'>
+          <div class="characterData" *ngFor = 'let singleCharacter of singleCharacters'>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar></div>
+                <mat-card-title>{{singleCharacter.name}}</mat-card-title>
+                <mat-card-subtitle>{{singleCharacter.race}} - {{singleCharacter.gender}}</mat-card-subtitle>
+              </mat-card-header>
+              <img src="{{singleCharacter.image}}" height="550px" width="300px" alt="Photo of {{singleCharacter.name}}">
+              <mat-card-content>
+                <p>
+                  {{singleCharacter.description}}
+                </p>
+              </mat-card-content>
+            </mat-card> 
+          </div>
+        </div> 
+    </mat-tab>
+
+    <mat-tab *ngFor = 'let character of characters.items' label="{{character.name}}">
+      <div class="characterData">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar></div>
+            <mat-card-title>{{character.name}}</mat-card-title>
+            <mat-card-subtitle>{{character.race}} - {{character.gender}}</mat-card-subtitle>
+          </mat-card-header>
+          <img src="{{character.image}}" height="550px" width="200px" alt="Photo of {{character.name}}">
+          <mat-card-content>
+            <p>
+              {{character.description}}
+            </p>
+          </mat-card-content>
+        </mat-card> 
+      </div> 
+    </mat-tab>
+  </mat-tab-group>
+</div>
+</body>
+</html>
